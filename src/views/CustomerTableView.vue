@@ -8,7 +8,7 @@
         </button>
       </p>
 
-    <CustomerTable :customers='customers' />
+    <CustomerTable :customers='customers' @delete-customer="deleteCustomer" />
 
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
@@ -60,6 +60,11 @@ export default {
   methods: {
     addCustomer(customer) {
       this.customers.push(customer)
+    },
+    deleteCustomer(id) {
+      this.customers = this.customers.filter(function(customer) { 
+        return customer.id !== id;
+      });
     }
   }
 }
